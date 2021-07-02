@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("This is just an example.")
+    return HttpResponse("API is working...")
