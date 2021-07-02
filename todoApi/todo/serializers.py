@@ -3,6 +3,10 @@ from rest_framework import serializers
 
 
 class TodoSerializer(serializers.ModelSerializer):
+    created_at = serializers.DateTimeField(input_formats=['%Y-%m-%d'], format='%Y-%m-%d', read_only=True)
+    updated_at = serializers.DateTimeField(input_formats=['%Y-%m-%d'], format='%Y-%m-%d', read_only=True)
+    photo = serializers.ImageField(source='created_by.photo', read_only=True)
+    user = serializers.CharField(source='created_by.username', read_only=True)
 
     def validate(self, attrs):
         if len(attrs['short_description']) < 3:
@@ -11,9 +15,9 @@ class TodoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Todo
-        # fields = ['short_description', 'long_description', 'allocated_time', 'created_at',
-        #           'created_by', 'is_complete', 'updated_at']
-        fields = '__all__'
+        fields = ['created_by', 'short_description', 'long_description', 'allocated_time', 'created_at',
+                  'user', 'is_complete', 'updated_at', 'photo']
+        # fields = '__all__'
         validators = []
 
 
