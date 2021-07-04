@@ -21,3 +21,8 @@ class TodoSerializer(serializers.ModelSerializer):
         validators = []
 
 
+class TodoCustomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Todo
+        fields = "__all__"
+
