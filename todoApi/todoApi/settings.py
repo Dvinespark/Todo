@@ -130,7 +130,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth user
 AUTH_USER_MODEL = 'todo.User'
-
+AUTHENTICATION_BACKENDS = (
+    'todo.backends.MyAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Django restframework permission
 REST_FRAMEWORK = {
